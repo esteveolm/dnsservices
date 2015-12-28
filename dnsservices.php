@@ -537,8 +537,8 @@ class DNSservices {
       $dns->named();
       foreach ($xml->domains as $domains) {
         foreach ($domains->internal as $zones) {
-          $op = "\tmatch-clients { 127.0.0.1; 192.168.0.0/16; 10.0.0.0/8; 172.16.0.0/12; };\n\trecursion yes;\n\tinclude \"".$this->master_dir."/named.conf.int.private\";";
-          $this->view("", $op, $zones, $dns);
+          $op = "\tmatch-clients { 127.0.0.1; 192.168.0.0/16; 10.0.0.0/8; 172.16.0.0/12; };\n\trecursion yes;\n\tinclude \"".$this->master_dir."/named.conf.int.private\";\n\tforwarders { 109.69.8.196; 8.8.4.4; };";  
+	  $this->view("", $op, $zones, $dns);
         }
         foreach ($domains->external as $zones) {
           $op = "\tmatch-clients { any; };\n\trecursion no;\n\tinclude \"".$this->master_dir."/named.conf.ext.private\";";
